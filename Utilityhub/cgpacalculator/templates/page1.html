@@ -1,0 +1,27 @@
+<h2>CGPA Calculator</h2>
+<form method="post">
+  {% csrf_token %}
+  <div id="subjects">
+    <div>
+      Credits: <input type="number" name="credits" step="1" required>
+      Grade Points: <input type="number" name="grades" step="0.1" required>
+    </div>
+  </div>
+  <button type="button" onclick="addRow()">+ Add Subject</button>
+  <button type="submit">Calculate</button>
+</form>
+
+{% if cgpa %}
+  <h3>Your CGPA: {{ cgpa }}</h3>
+{% endif %}
+
+<script>
+function addRow() {
+  const div = document.createElement("div");
+  div.innerHTML = `
+    Credits: <input type="number" name="credits" step="1" required>
+    Grade Points: <input type="number" name="grades" step="0.1" required>
+  `;
+  document.getElementById("subjects").appendChild(div);
+}
+</script>
